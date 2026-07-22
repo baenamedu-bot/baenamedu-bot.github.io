@@ -1,0 +1,3 @@
+# app-ads.txt for YounMe Studio apps
+# TODO: AdMob 게시자 ID(pub-XXXXXXXXXXXXXXXX)를 발급받은 뒤 아래 줄의 주석(#)을 풀고 ID를 교체하세요.
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
