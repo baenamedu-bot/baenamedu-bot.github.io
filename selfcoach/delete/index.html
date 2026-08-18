@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>셀프코치 - 셀프인테리어 공정 가이드 데이터 및 계정 삭제 요청 / SelfCoach Account Deletion Request</title>
+<meta name="description" content="셀프코치 - 셀프인테리어 공정 가이드 (kr.younme.selfcoach, 개발자 you&amp;me studio) 계정 및 데이터 삭제를 앱 설치 없이 웹에서 요청합니다.">
+<style>
+  body{font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:#FAF9F6;color:#1E2B24;line-height:1.7;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding:48px 24px 80px}
+  h1{font-size:26px;color:#1B4332;margin-bottom:8px}
+  h2{font-size:18px;margin-top:36px;border-bottom:1px solid #E3E7E4;padding-bottom:8px;color:#1B4332}
+  a{color:#1B4332}
+  .meta{color:#6B776F;font-size:13px}
+  .id{background:#fff;border:1px solid #E3E7E4;border-radius:10px;padding:14px 18px;font-size:14px;margin:18px 0 26px}
+  .id div{margin:3px 0}
+  .card{background:#fff;border:2px solid #1B4332;border-radius:14px;padding:24px;margin:10px 0 30px}
+  .card h2{margin-top:0;border:none;padding:0}
+  label{display:block;font-weight:600;font-size:14px;margin:18px 0 6px}
+  input,textarea{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #C9D2CC;border-radius:8px;font-size:16px;font-family:inherit;background:#fff;color:#1E2B24}
+  textarea{min-height:96px;resize:vertical}
+  .hint{font-size:13px;color:#6B776F;margin-top:6px}
+  button{margin-top:22px;width:100%;padding:15px;background:#1B4332;color:#fff;border:0;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit}
+  button[disabled]{opacity:.55;cursor:progress}
+  .msg{margin-top:18px;padding:14px 16px;border-radius:10px;font-size:15px;display:none}
+  .msg.ok{display:block;background:#E8F3EC;border:2px solid #1B4332}
+  .msg.err{display:block;background:#FDECEC;border:2px solid #C0392B}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+  th,td{border:1px solid #E3E7E4;padding:8px 10px;text-align:left;vertical-align:top}
+  th{color:#1B4332;font-weight:600;background:#F1F4F2}
+  ul{padding-left:20px}
+  li{margin:4px 0}
+  .alt{background:#fff;border:1px solid #E3E7E4;border-radius:10px;padding:16px 18px;margin:18px 0;font-size:14px}
+  hr{border:none;border-top:1px solid #E3E7E4;margin:48px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>데이터 및 계정 삭제 요청</h1>
+  <p class="meta">셀프코치 - 셀프인테리어 공정 가이드 · 개발자 you&amp;me studio (유앤미스튜디오)</p>
+
+  <div class="id">
+    <div><strong>앱 이름:</strong> 셀프코치 - 셀프인테리어 공정 가이드</div>
+    <div><strong>패키지 이름(앱 ID):</strong> kr.younme.selfcoach</div>
+    <div><strong>개발자:</strong> you&amp;me studio (유앤미스튜디오)</div>
+    <div><strong>문의:</strong> <a href="mailto:baenamedu@gmail.com">baenamedu@gmail.com</a></div>
+  </div>
+
+  <p>이 페이지에서 <strong>앱을 설치하지 않아도</strong> 계정 및 데이터 삭제를 요청할 수 있습니다.
+  아래 양식을 제출하시면 접수되며, <strong>영업일 기준 30일 이내</strong>에 처리한 뒤 입력하신 연락처로 결과를 회신해 드립니다.</p>
+
+  <div class="card">
+    <h2>삭제 요청 양식</h2>
+    <form id="f" method="POST" action="https://yltxqzkwnueydzlokdud.supabase.co/functions/v1/legal/delete">
+      <label for="contact">연락처 (이메일 또는 전화번호) <span aria-hidden="true">*</span></label>
+      <input id="contact" name="contact" required autocomplete="email" placeholder="예: user@example.com">
+      <div class="hint">처리 결과를 회신받을 연락처입니다. 삭제 처리 외의 목적으로는 사용하지 않습니다.</div>
+
+      <label for="user_ref">앱 내 사용자 ID (선택)</label>
+      <input id="user_ref" name="user_ref" placeholder="모르셔도 됩니다">
+      <div class="hint">앱 &gt; 마이 &gt; 설정에서 확인할 수 있습니다. 모르시면 비워두세요. 연락처로 본인 확인 후 처리합니다.</div>
+
+      <label for="note">요청 내용 (선택)</label>
+      <textarea id="note" name="note" placeholder="삭제를 원하시는 데이터나 추가로 알려주실 내용이 있으면 적어주세요."></textarea>
+
+      <button id="btn" type="submit">삭제 요청 제출</button>
+      <div id="msg" class="msg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+
+  <h2>삭제되는 데이터</h2>
+  <table>
+    <tr><th>항목</th><th>처리</th></tr>
+    <tr><td>익명 계정 식별자(UUID)</td><td>삭제</td></tr>
+    <tr><td>저장한 공정표 및 진행 상태</td><td>삭제</td></tr>
+    <tr><td>전문가 연결(견적) 요청 정보 — 지역·희망 시기·연락처·면적</td><td>삭제</td></tr>
+    <tr><td>구독 상태, 사용 이벤트, 오류 로그</td><td>삭제</td></tr>
+    <tr><td>하자 진단 사진, AI 코치 대화</td><td>애초에 서버에 저장되지 않음(처리 후 즉시 파기)</td></tr>
+  </table>
+  <p>계정을 삭제하면 위 데이터가 함께 삭제되며 복구할 수 없습니다.</p>
+
+  <h2>보존 예외</h2>
+  <p>관련 법령이 보존을 요구하는 경우에 한해, 최소한의 정보가 법정 보존 기간(예: 전자상거래법상 거래 기록 5년) 동안 분리 보관된 뒤 파기됩니다.
+  그 외 항목은 요청 접수 후 30일 이내에 삭제됩니다.</p>
+
+  <div class="alt">
+    <strong>이메일로 요청하기</strong><br>
+    위 양식 대신
+    <a href="mailto:baenamedu@gmail.com?subject=%5B%EC%85%80%ED%94%84%EC%BD%94%EC%B9%98%5D%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%82%AD%EC%A0%9C%20%EC%9A%94%EC%B2%AD">baenamedu@gmail.com</a>
+    으로 직접 요청하셔도 동일하게 처리됩니다.
+  </div>
+
+  <div class="alt">
+    <strong>참고: 앱을 사용 중이신 경우</strong><br>
+    앱에서 <em>마이 &gt; 설정 &gt; 계정·데이터 삭제</em>를 이용하면 즉시 삭제할 수 있습니다.
+    앱 설치 없이 삭제를 원하시면 위 양식을 이용해 주세요.
+  </div>
+
+  <hr>
+
+  <h2 class="en">English</h2>
+  <p><strong>App:</strong> 셀프코치 - 셀프인테리어 공정 가이드 (SelfCoach) · <strong>Package:</strong> kr.younme.selfcoach ·
+  <strong>Developer:</strong> you&amp;me studio</p>
+  <p>Use the form above to request deletion of your account and associated data <strong>without installing the app</strong>.
+  Deleted data: anonymous account identifier (UUID), saved renovation plans and progress, contractor quote requests
+  (region, schedule, phone number, floor area), subscription status, usage events and crash logs.
+  Diagnosis photos and AI coach conversations are never stored on our servers.
+  Requests are processed within 30 business days and the result is sent to the contact you provide.
+  Minimal records may be retained where required by law. You may also email
+  <a href="mailto:baenamedu@gmail.com">baenamedu@gmail.com</a>.</p>
+
+  <hr>
+  <p class="meta">
+    <a href="https://baenamedu-bot.github.io/selfcoach/privacy/">개인정보처리방침</a> ·
+    <a href="https://baenamedu-bot.github.io/selfcoach/terms/">이용약관</a> ·
+    <a href="https://baenamedu-bot.github.io/">you&amp;me studio</a>
+  </p>
+
+</div>
+
+<script>
+(function () {
+  var f = document.getElementById('f');
+  var btn = document.getElementById('btn');
+  var msg = document.getElementById('msg');
+
+  function show(kind, text) {
+    msg.className = 'msg ' + kind;
+    msg.textContent = text;
+  }
+
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var contact = document.getElementById('contact').value.trim();
+    if (!contact) {
+      show('err', '연락처를 입력해 주세요. 처리 결과를 회신하려면 필요합니다.');
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = '접수 중...';
+    show('ok', '접수 중입니다. 잠시만 기다려 주세요.');
+
+    fetch(f.action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contact: contact,
+        user_ref: document.getElementById('user_ref').value.trim(),
+        note: document.getElementById('note').value.trim()
+      })
+    })
+      .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+      .then(function (d) {
+        if (d && d.ok) {
+          f.reset();
+          show('ok', '삭제 요청이 접수되었습니다. 영업일 기준 30일 이내에 처리한 뒤 입력하신 연락처로 회신드립니다.');
+          btn.textContent = '접수 완료';
+        } else {
+          throw new Error((d && d.error) || 'failed');
+        }
+      })
+      .catch(function () {
+        show('err', '접수 중 문제가 발생했습니다. 잠시 후 다시 시도하시거나 baenamedu@gmail.com 으로 요청해 주세요.');
+        btn.disabled = false;
+        btn.textContent = '삭제 요청 제출';
+      });
+  });
+})();
+</script>
+</body>
+</html>
